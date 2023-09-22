@@ -1,0 +1,78 @@
+:root {
+  /* Colors */
+  --white: #fff;
+  --black: #000;
+
+  --grey-50: #fafafa;
+  --grey-100: #f5f5f5;
+  --grey-200: #eeeeee;
+  --grey-300: #e0e0e0;
+  --grey-400: #bdbdbd;
+  --grey-500: #bdbdbd;
+  --grey-600: #757575;
+  --grey-700: #616161;
+  --grey-800: #424242;
+  --grey-900: #212121;
+
+  --primary-50: #e8f5e7;
+  --primary-100: #d0ebcf;
+  --primary-200: #a1d6a0;
+  --primary-300: #72c270;
+  --primary-400: #43ad41;
+  --primary-500: #149911;
+  --primary-600: #107a0e;
+  --primary-700: #0c5c0a;
+  --primary-800: #083d07;
+  --primary-900: #041f03;
+
+  --danger-light: #ef9a9a;
+  --danger: #f44336;
+  --danger-dark: #b71c1c;
+  /* Fonts */
+  --body-font: 'Poppins', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--white);
+  font-family: var(--body-font);
+  font-weight: 400;
+  padding-top: 20rem;
+  text-align: center;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--primary-300),
+    var(--primary-500)
+  );
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 6.4rem;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
