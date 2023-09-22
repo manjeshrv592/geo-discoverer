@@ -1,3 +1,27 @@
+/**********************************************/
+/* File structure */
+
+/* 
+- Custom properties
+
+- Basic reset
+
+- Layout
+-- Container
+-- Header
+-- Brand name
+-- Search
+
+- Reusable components
+--Input
+-- Buttons
+
+- Util classes
+-- Text colors
+*/
+
+/**********************************************/
+/* Custom properties */
 :root {
   /* Colors */
   --white: #fff;
@@ -28,10 +52,20 @@
   --danger-light: #ef9a9a;
   --danger: #f44336;
   --danger-dark: #b71c1c;
+
+  /* Gradients */
+  --primary-gradient: linear-gradient(
+    to right bottom,
+    var(--primary-300),
+    var(--primary-500)
+  );
+
   /* Fonts */
   --body-font: 'Poppins', sans-serif;
 }
 
+/**********************************************/
+/* Basic reset */
 *,
 *::before,
 *::after {
@@ -45,17 +79,16 @@ html {
 }
 
 body {
-  color: var(--white);
+  font-size: 1.6rem;
   font-family: var(--body-font);
   font-weight: 400;
-  padding-top: 20rem;
-  text-align: center;
   min-height: 100vh;
-  background-image: linear-gradient(
-    to right bottom,
-    var(--primary-300),
-    var(--primary-500)
-  );
+  background-image: var(--primary-gradient);
+  padding: 5rem 0;
+}
+
+::-webkit-scrollbar {
+  width: 0;
 }
 
 h1,
@@ -67,12 +100,247 @@ h6 {
   font-weight: 600;
 }
 
-h1 {
-  font-size: 6.4rem;
-}
-
 input,
 textarea,
 button {
+  font-size: inherit;
   font-family: inherit;
+}
+
+/**********************************************/
+/* Layout */
+
+/* Container */
+.container {
+  background-color: var(--white);
+  border-radius: 1.6rem;
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  padding: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand name */
+.brand-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.h1 {
+  display: inline-block;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: transparent;
+  background-image: var(--primary-gradient);
+  background-clip: text;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-500);
+}
+
+/* Search */
+.search {
+  flex: 1;
+}
+
+.search-form {
+  display: flex;
+  width: 100%;
+  width: 100%;
+  max-width: 50rem;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.search-form input {
+  margin-right: -13rem;
+  width: 100%;
+  padding-right: 20rem;
+}
+
+.search-form button {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+/**********************************************/
+/* Reusable components */
+
+/* Input */
+.input {
+  border-radius: 10rem;
+  padding: 1.2rem 3.2rem;
+  border: var(--grey-500) 2px solid;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: var(--primary-500);
+  outline: none;
+}
+
+/* Buttons */
+.btn {
+  cursor: pointer;
+  border: none;
+  padding: 1.2rem 3.2rem;
+  border-radius: 10rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--grey-800);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  color: var(--white);
+  background-image: var(--primary-gradient);
+}
+
+.btn-light {
+  color: var(--grey-700);
+}
+
+.btn-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(25%, -25%);
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.4rem;
+}
+
+.btn-badge-primary {
+  color: var(--white);
+  background-image: var(--primary-gradient);
+}
+
+.btn-icon {
+  cursor: pointer;
+  color: var(--primary-500);
+  display: inline-block;
+  width: 4.8rem;
+  height: 4.8rem;
+  font-size: 2rem;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+  background-color: var(--primary-100);
+}
+
+/**********************************************/
+/* Util classes */
+
+/* Text colors */
+.text-grey-50 {
+  color: var(--grey-50);
+}
+
+.text-grey-100 {
+  color: var(--grey-100);
+}
+
+.text-grey-200 {
+  color: var(--grey-200);
+}
+
+.text-grey-300 {
+  color: var(--grey-300);
+}
+
+.text-grey-400 {
+  color: var(--grey-400);
+}
+
+.text-grey,
+.text-grey-500 {
+  color: var(--grey-500);
+}
+
+.text-grey-600 {
+  color: var(--grey-600);
+}
+
+.text-grey-700 {
+  color: var(--grey-700);
+}
+
+.text-grey-800 {
+  color: var(--grey-800);
+}
+
+.text-grey-900 {
+  color: var(--grey-900);
+}
+
+.text-primary-50 {
+  color: var(--primary-50);
+}
+
+.text-primary-100 {
+  color: var(--primary-100);
+}
+
+.text-primary-200 {
+  color: var(--primary-200);
+}
+
+.text-primary-300 {
+  color: var(--primary-300);
+}
+
+.text-primary-400 {
+  color: var(--primary-400);
+}
+
+.text-primary,
+.text-primary-500 {
+  color: var(--primary-500);
+}
+
+.text-primary-600 {
+  color: var(--primary-600);
+}
+
+.text-primary-700 {
+  color: var(--primary-700);
+}
+
+.text-primary-800 {
+  color: var(--primary-800);
+}
+
+.text-primary-900 {
+  color: var(--primary-900);
 }

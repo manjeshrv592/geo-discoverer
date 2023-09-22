@@ -1,7 +1,19 @@
 import React from 'react';
+import Header from './components/header/Header';
+import BrandName from './components/header/BrandName';
+import Bookmarks from './components/header/Bookmarks';
+import Search from './components/search/Search';
 
 const App = () => {
-  return <h1>GeoDiscoverer</h1>;
+  return (
+    <div className='container'>
+      <Header>
+        <BrandName />
+        <Search />
+        <Bookmarks />
+      </Header>
+    </div>
+  );
 };
 
 export default App;
