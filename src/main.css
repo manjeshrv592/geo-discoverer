@@ -79,6 +79,7 @@ html {
 }
 
 body {
+  color: var(--grey-700);
   font-size: 1.6rem;
   font-family: var(--body-font);
   font-weight: 400;
@@ -100,9 +101,14 @@ h6 {
   font-weight: 600;
 }
 
+.h4 {
+  font-size: 1.6rem;
+}
+
 input,
 textarea,
 button {
+  color: inherit;
   font-size: inherit;
   font-family: inherit;
 }
@@ -155,9 +161,58 @@ button {
   flex: 1;
 }
 
+.search,
+.bookmarks {
+  position: relative;
+}
+
+.search-result-list,
+.bookmarks-list {
+  position: absolute;
+  overflow: hidden;
+  list-style: none;
+  box-shadow: 0 1rem 2rem rgba(20, 153, 17, 0.1);
+  background-color: var(--white);
+  border-radius: 1.6rem;
+  top: calc(100% + 0.8rem);
+}
+
+.bookmarks-list {
+  width: 30rem;
+  right: 0;
+}
+
+.search-result-list {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 50rem;
+}
+
+.search-result-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 1.6rem;
+  transition: all 0.3s ease;
+}
+
+.search-result-item img {
+  width: 3.2rem;
+}
+
+.search-result-item:hover {
+  background-color: var(--primary-50);
+}
+
+.search-result-item span {
+  font-size: 1.4rem;
+  margin-left: auto;
+}
+
 .search-form {
   display: flex;
-  width: 100%;
   width: 100%;
   max-width: 50rem;
   margin: 0 auto;

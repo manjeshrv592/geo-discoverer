@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/header/Header';
 import BrandName from './components/header/BrandName';
-import Bookmarks from './components/header/Bookmarks';
+import Bookmarks from './components/bookmarks/Bookmarks';
 import Search from './components/search/Search';
 
 const App = () => {
