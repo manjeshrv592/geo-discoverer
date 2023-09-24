@@ -23,7 +23,7 @@ const SearchForm = ({ onQuery }) => {
       <input
         type='text'
         className='input'
-        placeholder='Search your favorite country'
+        placeholder='Search country'
         value={query}
         onChange={handleChange}
       />

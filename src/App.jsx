@@ -13,27 +13,30 @@ const App = () => {
         <Bookmarks />
       </Header>
       <main className='main'>
-        <div className='main-info'>
-          <div className='country-flag-container'>
-            <img
-              src='https://flagcdn.com/in.svg'
-              alt='India flag'
-              className='country-flag'
-            />
-            {/* <small className='text-primary-400'>
-              The flag of India is composed of three equal horizontal bands of
-              saffron, white and green. A navy blue wheel with twenty-four
-              spokes — the Ashoka Chakra — is centered in the white band.
-            </small> */}
-          </div>
-          <div className='country-primary-info'>
-            <div>
-              <small>Country</small>
-              <h2 className='mb-sm'>India</h2>
-              <small>Region</small>
-              <h4 className='mb-sm'>Asia</h4>
+        <div className='primary-info'>
+          <img
+            src='https://flagcdn.com/in.svg'
+            alt='India flag'
+            className='country-flag'
+          />
+          <small className='text-primary-400 flag-description'>
+            The flag of India is composed of three equal horizontal bands of
+            saffron, white and green. A navy blue wheel with twenty-four spokes
+            — the Ashoka Chakra — is centered in the white band.
+          </small>
+          <div className='country-overview'>
+            <div className='country-name'>
+              <div>
+                <small>Country</small>
+                <h2 className='mb-sm'>India</h2>
+              </div>
+              <button className='btn-icon' title='Add to Bookmark'>
+                <i className='fa-regular fa-bookmark'></i>
+              </button>
             </div>
-            <small className='mt-auto'>Neighbours (6)</small>
+            <small>Region</small>
+            <h4 className='mb-sm'>Asia</h4>
+            <small className='mb-tn'>Neighbours (6)</small>
             <div className='neighbours'>
               <span title='Bangladesh'>
                 <img src='https://flagcdn.com/bd.svg' alt='Bangladesh Flag' />
@@ -56,7 +59,51 @@ const App = () => {
             </div>
           </div>
         </div>
+        <div className='secondary-info'>
+          <div>
+            <small>Capital</small>
+            <h4>New Delhi</h4>
+          </div>
+          <div>
+            <small>Independent</small>
+            <h4>Yes</h4>
+          </div>
+          <div>
+            <small>Currency</small>
+            <h4>Indian rupee (₹)</h4>
+          </div>
+          <div>
+            <small>Landlocked</small>
+            <h4>No</h4>
+          </div>
+          <div>
+            <small>Population (Million)</small>
+            <h4>1,380</h4>
+          </div>
+          <div>
+            <small>Diving side</small>
+            <h4>Left</h4>
+          </div>
+          <div>
+            <small>Timezone</small>
+            <h4>UTC+05:30</h4>
+          </div>
+          <div>
+            <small>Start of week</small>
+            <h4>Monday</h4>
+          </div>
+        </div>
       </main>
+      <footer className='footer'>
+        Designed & Developed by{' '}
+        <a
+          rel='noreferrer'
+          href='https://twitter.com/manjesh_webdev'
+          target='_blank'
+        >
+          Manjesh R V
+        </a>
+      </footer>
     </div>
   );
 };

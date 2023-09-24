@@ -16,15 +16,13 @@ const Bookmarks = () => {
         <span className='btn-badge btn-badge-primary'>7</span>
       </button>
 
-      {toggleBookmarkList && (
-        <ul className='bookmarks-list'>
-          <BookmarksItem
-            flag='https://flagcdn.com/io.svg'
-            country='British Indian Ocean Territory'
-          />
-          <BookmarksItem flag='https://flagcdn.com/in.svg' country='India' />
-        </ul>
-      )}
+      <ul className={`bookmarks-list ${toggleBookmarkList ? 'open' : ''}`}>
+        <BookmarksItem
+          flag='https://flagcdn.com/io.svg'
+          country='British Indian Ocean Territory'
+        />
+        <BookmarksItem flag='https://flagcdn.com/in.svg' country='India' />
+      </ul>
     </div>
   );
 };
