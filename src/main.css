@@ -470,6 +470,7 @@ small {
 .country-flag {
   border-radius: 1.6rem;
   max-width: 32rem;
+  margin: auto;
 }
 
 .country-overview {
