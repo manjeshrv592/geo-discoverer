@@ -1,15 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 import SearchResult from './SearchResult';
 
 const Search = () => {
-  const [toggleSearchResult, setToggleSearchResult] = useState(false);
   const [toggleSearch, setToggleSearch] = useState(false);
+  const [countryResults, setCountryResults] = useState([]);
+  const [query, setQuery] = useState('');
 
-  const handleToggleSearchResult = query => {
-    const queryStatus = query.length === 0 ? false : true;
-    setToggleSearchResult(queryStatus);
-  };
+  useEffect(
+    function () {
+      async function fetchCountries() {
+        if (!query || query.length <= 2) return setCountryResults([]);
+        try {
+          const res = await fetch(
+            `https://restcountries.com/v3.1/name/${query}`
+          );
+
+          const data = await res.json();
+
+          console.log(data);
+          setCountryResults(data);
+        } catch (err) {
+        } finally {
+        }
+      }
+
+      fetchCountries();
+    },
+    [query]
+  );
 
   return (
     <>
@@ -25,8 +44,10 @@ const Search = () => {
         >
           <i className='fa-solid fa-xmark'></i>
         </button>
-        <SearchForm onQuery={handleToggleSearchResult} />
-        {toggleSearchResult && <SearchResult />}
+        <SearchForm query={query} setQuery={setQuery} />
+        {countryResults.length > 0 && (
+          <SearchResult countries={countryResults} />
+        )}
       </div>
     </>
   );

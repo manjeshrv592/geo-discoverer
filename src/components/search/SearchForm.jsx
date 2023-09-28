@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const SearchForm = ({ onQuery }) => {
-  const [query, setQuery] = useState('');
-
+const SearchForm = ({ query, setQuery }) => {
   const handleSubmit = e => {
     e.preventDefault();
   };
@@ -10,13 +8,6 @@ const SearchForm = ({ onQuery }) => {
   const handleChange = e => {
     setQuery(e.target.value);
   };
-
-  useEffect(
-    function () {
-      onQuery(query);
-    },
-    [onQuery, query]
-  );
 
   return (
     <form onSubmit={handleSubmit} className='search-form'>
