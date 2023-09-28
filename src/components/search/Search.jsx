@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 import SearchResult from './SearchResult';
 
-const Search = () => {
+const Search = ({ onSelectCountry }) => {
   const [toggleSearch, setToggleSearch] = useState(false);
-  const [countryResults, setCountryResults] = useState([]);
+  const [countryResults, setCountryResults] = useState(null);
   const [query, setQuery] = useState('');
 
   useEffect(
@@ -45,8 +45,12 @@ const Search = () => {
           <i className='fa-solid fa-xmark'></i>
         </button>
         <SearchForm query={query} setQuery={setQuery} />
-        {countryResults.length > 0 && (
-          <SearchResult countries={countryResults} />
+        {countryResults && (
+          <SearchResult
+            countries={countryResults}
+            onSelectCountry={onSelectCountry}
+            onCountryResults={setCountryResults}
+          />
         )}
       </div>
     </>

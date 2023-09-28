@@ -1,15 +1,15 @@
 import React from 'react';
 import SearchResultItem from './SearchResultItem';
 
-const SearchResult = ({ countries }) => {
+const SearchResult = ({ countries, onSelectCountry, onCountryResults }) => {
   return (
     <ul className='search-result-list'>
       {countries.map(country => (
         <SearchResultItem
           key={country.cca3}
-          flag={country.flags.svg}
-          country={country.name.common}
-          region={country.region}
+          country={country}
+          onSelectCountry={onSelectCountry}
+          onCountryResults={onCountryResults}
         />
       ))}
     </ul>

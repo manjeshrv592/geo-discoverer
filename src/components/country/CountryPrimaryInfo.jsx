@@ -1,30 +1,28 @@
 import React from 'react';
 
-const CountryPrimaryInfo = () => {
+const CountryPrimaryInfo = ({ country }) => {
   return (
     <div className='primary-info'>
       <img
-        src='https://flagcdn.com/in.svg'
-        alt='India flag'
+        src={country.flags.svg}
+        alt={`${country.name.common} flag`}
         className='country-flag'
       />
       <small className='text-primary-400 flag-description'>
-        The flag of India is composed of three equal horizontal bands of
-        saffron, white and green. A navy blue wheel with twenty-four spokes —
-        the Ashoka Chakra — is centered in the white band.
+        {country.flags.alt}
       </small>
       <div className='country-overview'>
         <div className='country-name'>
           <div>
             <small>Country</small>
-            <h2 className='mb-sm'>India</h2>
+            <h2 className='mb-sm'>{country.name.common}</h2>
           </div>
           <button className='btn-icon' title='Add to Bookmark'>
             <i className='fa-regular fa-bookmark'></i>
           </button>
         </div>
         <small>Region</small>
-        <h4 className='mb-sm'>Asia</h4>
+        <h4 className='mb-sm'>{country.region}</h4>
         <small className='mb-tn'>Neighbours (6)</small>
         <div className='neighbours'>
           <span title='Bangladesh'>

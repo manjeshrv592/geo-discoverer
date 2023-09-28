@@ -647,3 +647,7 @@ small {
 .p-0 {
   padding: 0;
 }
+
+.d-block {
+  display: block;
+}

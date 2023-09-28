@@ -1,39 +1,55 @@
 import React from 'react';
 
-const CountrySecondaryInfo = () => {
+const CountrySecondaryInfo = ({ country }) => {
+  const { name: currencyName, symbol } = Object.values(country.currencies)[0];
+
   return (
     <div className='secondary-info'>
       <div>
-        <small>Capital</small>
-        <h4>New Delhi</h4>
+        <small>{country.capital.length > 1 ? 'Capitals' : 'Capital'}</small>
+        <h4>
+          {country.capital.map(city => (
+            <span className='d-block' key={city}>
+              {city}
+            </span>
+          ))}
+        </h4>
       </div>
       <div>
         <small>Independent</small>
-        <h4>Yes</h4>
+        <h4>{country.independent ? 'Yes' : 'No'}</h4>
       </div>
       <div>
         <small>Currency</small>
-        <h4>Indian rupee (₹)</h4>
+        <h4>
+          {currencyName} ({symbol})
+        </h4>
       </div>
       <div>
         <small>Landlocked</small>
-        <h4>No</h4>
+        <h4>{country.landlocked ? 'Yes' : 'No'}</h4>
       </div>
       <div>
         <small>Population (Million)</small>
-        <h4>1,380</h4>
+        <h4>{(country.population / 1000000).toFixed(2)}</h4>
       </div>
       <div>
         <small>Diving side</small>
-        <h4>Left</h4>
+        <h4>{country.car.side}</h4>
       </div>
       <div>
-        <small>Timezone</small>
-        <h4>UTC+05:30</h4>
+        <small>{country.timezones.length > 1 ? 'Timezones' : 'Timezone'}</small>
+        <h4>
+          {country.timezones.map(time => (
+            <span className='d-block' key={time}>
+              {time}
+            </span>
+          ))}
+        </h4>
       </div>
       <div>
         <small>Start of week</small>
-        <h4>Monday</h4>
+        <h4>{country.startOfWeek}</h4>
       </div>
     </div>
   );
