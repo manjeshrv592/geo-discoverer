@@ -9,23 +9,32 @@ const Search = ({ onSelectCountry }) => {
 
   useEffect(
     function () {
+      const controller = new AbortController();
+
       async function fetchCountries() {
         if (!query || query.length <= 2) return setCountryResults([]);
         try {
           const res = await fetch(
-            `https://restcountries.com/v3.1/name/${query}`
+            `https://restcountries.com/v3.1/name/${query}`,
+            { signal: controller.signal }
           );
 
           const data = await res.json();
 
-          console.log(data);
           setCountryResults(data);
         } catch (err) {
+          // if(err.name !== 'AbortError') {
+          //   setError(er.message)
+          // }
         } finally {
         }
       }
 
       fetchCountries();
+
+      return function () {
+        controller.abort();
+      };
     },
     [query]
   );

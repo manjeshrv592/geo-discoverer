@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BookmarksItem from './BookmarksItem';
 
-const Bookmarks = () => {
+const Bookmarks = ({ bookmarks, onSelectCountry }) => {
   const [toggleBookmarkList, setToggleBookmarkList] = useState(false);
 
   const handleClick = () => {
@@ -13,15 +13,17 @@ const Bookmarks = () => {
       <button className='btn btn-light' onClick={handleClick}>
         <i className='fa-solid fa-bookmark'></i>
         Bookmarks
-        <span className='btn-badge btn-badge-primary'>7</span>
+        <span className='btn-badge btn-badge-primary'>{bookmarks.length}</span>
       </button>
 
       <ul className={`bookmarks-list ${toggleBookmarkList ? 'open' : ''}`}>
-        <BookmarksItem
-          flag='https://flagcdn.com/io.svg'
-          country='British Indian Ocean Territory'
-        />
-        <BookmarksItem flag='https://flagcdn.com/in.svg' country='India' />
+        {bookmarks.map(country => (
+          <BookmarksItem
+            key={country.cca3}
+            country={country}
+            onSelectCountry={onSelectCountry}
+          />
+        ))}
       </ul>
     </div>
   );

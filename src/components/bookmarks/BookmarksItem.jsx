@@ -1,10 +1,10 @@
 import React from 'react';
 
-const BookmarksItem = ({ flag, country, region }) => {
+const BookmarksItem = ({ country, onSelectCountry }) => {
   return (
-    <li className='search-result-item'>
-      <img src={flag} alt={`${country} flag`} />
-      <h4>{country}</h4>
+    <li className='search-result-item' onClick={() => onSelectCountry(country)}>
+      <img src={country.flags.svg} alt={`${country.name.common} flag`} />
+      <h4>{country.name.common}</h4>
     </li>
   );
 };
