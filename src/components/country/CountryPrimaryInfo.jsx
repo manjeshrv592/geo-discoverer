@@ -1,6 +1,5 @@
 import React from 'react';
-import Loader from '../status/Loader';
-import Error from '../status/Error';
+import Neighbors from '../neighbors/Neighbors';
 
 const CountryPrimaryInfo = ({
   country,
@@ -46,26 +45,13 @@ const CountryPrimaryInfo = ({
         </div>
         <small>Region</small>
         <h4 className='mb-sm'>{country.region}</h4>
-        <small className='mb-tn'>Neighbours ({neighbours.length})</small>
-        {isLoading && <Loader className='justify-content-start' />}
-        {error && <Error message={error} />}
-        {neighbours.length === 0 && (
-          <span className='d-block'>{`No neighbours ${country.name.common} is a Island`}</span>
-        )}
-        <div className='neighbours'>
-          {neighbours.map(neighbour => (
-            <span
-              key={neighbour.cca3}
-              title={neighbour.name.common}
-              onClick={() => onSelectCountry(neighbour)}
-            >
-              <img
-                src={neighbour.flags.svg}
-                alt={`${neighbour.name.common} flag`}
-              />
-            </span>
-          ))}
-        </div>
+        <Neighbors
+          neighbours={neighbours}
+          onSelectCountry={onSelectCountry}
+          isLoading={isLoading}
+          error={error}
+          name={country.name.common}
+        />
       </div>
     </div>
   );
