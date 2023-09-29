@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocalStorageState } from './customHooks/useLocalStorageState';
 import Header from './components/header/Header';
 import BrandName from './components/header/BrandName';
 import Bookmarks from './components/bookmarks/Bookmarks';
@@ -9,15 +10,14 @@ import CountryPrimaryInfo from './components/country/CountryPrimaryInfo';
 import CountrySecondaryInfo from './components/country/CountrySecondaryInfo';
 
 const App = () => {
-  // NOTE: We will use cca3 property on countries as ID or KEY
+  // NOTE: RESTCountries api does not provide id on countries data. So we will use cca3 property on countries as ID or KEY
+
+  // This will be displayed in main area
   const [selectedCountry, setSelectedCountry] = useState(null);
 
-  // bookmarks array: We will check for local storage if countries are available, if yes we will use it else we will initialize state with empty array
-  const [bookmarks, setBookmarks] = useState(function () {
-    const storedValue = localStorage.getItem('countries');
-    if (!storedValue) return [];
-    return JSON.parse(storedValue);
-  });
+  // Bookmarks array: We will make use of custom local storage hook to store it's state on page reload
+  const [bookmarks, setBookmarks] = useLocalStorageState([], 'countries');
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [neighbours, setNeighbours] = useState([]);
