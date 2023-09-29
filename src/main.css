@@ -559,11 +559,11 @@ small {
   display: inline-block;
   position: relative;
   width: 80px;
-  height: 80px;
+  height: 40px;
 }
 .lds-ellipsis div {
   position: absolute;
-  top: 33px;
+  top: 13px;
   width: 13px;
   height: 13px;
   border-radius: 50%;
@@ -724,5 +724,9 @@ small {
 }
 
 .border {
-  border: 1px solid var(--primary-50);
+  border: 1px solid var(--primary-100);
+}
+
+.justify-content-start {
+  justify-content: flex-start;
 }

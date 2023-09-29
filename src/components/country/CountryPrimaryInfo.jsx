@@ -1,4 +1,6 @@
 import React from 'react';
+import Loader from '../status/Loader';
+import Error from '../status/Error';
 
 const CountryPrimaryInfo = ({
   country,
@@ -6,6 +8,8 @@ const CountryPrimaryInfo = ({
   bookmarks,
   neighbours,
   onSelectCountry,
+  isLoading,
+  error,
 }) => {
   const existsInBookmark = bookmarks.filter(
     bookmark => bookmark.cca3 === country.cca3
@@ -17,7 +21,7 @@ const CountryPrimaryInfo = ({
       <img
         src={country.flags.svg}
         alt={`${country.name.common} flag`}
-        className='country-flag'
+        className='country-flag border'
       />
       <small className='text-primary-400 flag-description'>
         {country.flags.alt}
@@ -43,6 +47,11 @@ const CountryPrimaryInfo = ({
         <small>Region</small>
         <h4 className='mb-sm'>{country.region}</h4>
         <small className='mb-tn'>Neighbours ({neighbours.length})</small>
+        {isLoading && <Loader className='justify-content-start' />}
+        {error && <Error message={error} />}
+        {neighbours.length === 0 && (
+          <span className='d-block'>{`No neighbours ${country.name.common} is a Island`}</span>
+        )}
         <div className='neighbours'>
           {neighbours.map(neighbour => (
             <span

@@ -9,6 +9,8 @@ const SearchResult = ({
   onCountryResults,
   isLoading,
   error,
+  onQuery,
+  onToggleSearch,
 }) => {
   return (
     <ul className='search-result-list'>
@@ -22,6 +24,8 @@ const SearchResult = ({
             country={country}
             onSelectCountry={onSelectCountry}
             onCountryResults={onCountryResults}
+            onQuery={onQuery}
+            onToggleSearch={onToggleSearch}
           />
         ))}
     </ul>

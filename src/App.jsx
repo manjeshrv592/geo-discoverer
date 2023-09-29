@@ -18,7 +18,8 @@ const App = () => {
     if (!storedValue) return [];
     return JSON.parse(storedValue);
   });
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const [neighbours, setNeighbours] = useState([]);
 
   const handleBookmarks = country => {
@@ -40,6 +41,7 @@ const App = () => {
 
   const handleSelectedCountry = country => {
     setSelectedCountry(country);
+    setNeighbours([]);
   };
 
   // Add bookmarks to local storage
@@ -55,25 +57,34 @@ const App = () => {
     function () {
       if (!selectedCountry) return;
       const { borders } = selectedCountry;
+      if (!borders) return setNeighbours([]);
 
       async function fetchNeighbours() {
-        const results = await Promise.allSettled(
-          borders.map(border =>
-            fetch(`https://restcountries.com/v3.1/alpha?codes=${border}`)
-          )
-        );
+        setError('');
+        setIsLoading(true);
+        try {
+          const results = await Promise.allSettled(
+            borders.map(border =>
+              fetch(`https://restcountries.com/v3.1/alpha?codes=${border}`)
+            )
+          );
 
-        const successResults = results.filter(
-          result => (result.status = 'fulfilled')
-        );
+          const successResults = results.filter(
+            result => (result.status = 'fulfilled')
+          );
 
-        const data = await Promise.allSettled(
-          successResults.map(result => result.value.json())
-        );
+          const data = await Promise.allSettled(
+            successResults.map(result => result.value.json())
+          );
 
-        const neighbourCountries = data.map(d => d.value[0]);
+          const neighbourCountries = data.map(d => d.value[0]);
 
-        setNeighbours(neighbourCountries);
+          setNeighbours(neighbourCountries);
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
+        }
       }
 
       fetchNeighbours();
@@ -99,6 +110,8 @@ const App = () => {
             onBookmarks={handleBookmarks}
             neighbours={neighbours}
             onSelectCountry={handleSelectedCountry}
+            isLoading={isLoading}
+            error={error}
           />
         )}
         {selectedCountry && <CountrySecondaryInfo country={selectedCountry} />}

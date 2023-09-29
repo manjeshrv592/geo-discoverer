@@ -1,9 +1,17 @@
 import React from 'react';
 
-const SearchResultItem = ({ country, onSelectCountry, onCountryResults }) => {
+const SearchResultItem = ({
+  country,
+  onSelectCountry,
+  onCountryResults,
+  onQuery,
+  onToggleSearch,
+}) => {
   const handleClick = country => {
     onCountryResults(null);
     onSelectCountry(country);
+    onQuery('');
+    onToggleSearch(false);
   };
 
   return (

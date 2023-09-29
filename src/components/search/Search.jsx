@@ -28,10 +28,7 @@ const Search = ({ onSelectCountry }) => {
           if (data.status === 404) throw new Error('Country not found');
 
           setCountryResults(data);
-          console.log(data);
         } catch (err) {
-          console.log(err);
-          console.log(err.message);
           if (err.name !== 'AbortError') {
             setError(err.message);
           }
@@ -71,6 +68,8 @@ const Search = ({ onSelectCountry }) => {
             onCountryResults={setCountryResults}
             isLoading={isLoading}
             error={error}
+            onQuery={setQuery}
+            onToggleSearch={setToggleSearch}
           />
         )}
       </div>
