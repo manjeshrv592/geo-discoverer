@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NeighborItem = ({ neighbour, onSelectCountry, name }) => {
+const NeighbourItem = ({ neighbour, onSelectCountry, name }) => {
   return (
     <span
       title={neighbour.name.common}
@@ -11,4 +11,4 @@ const NeighborItem = ({ neighbour, onSelectCountry, name }) => {
   );
 };
 
-export default NeighborItem;
+export default NeighbourItem;

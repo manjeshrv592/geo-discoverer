@@ -1,9 +1,15 @@
 import React from 'react';
 import Loader from '../status/Loader';
 import Error from '../status/Error';
-import NeighborItem from './NeighborItem';
+import NeighbourItem from './NeighbourItem';
 
-const Neighbors = ({ neighbours, isLoading, error, name, onSelectCountry }) => {
+const Neighbours = ({
+  neighbours,
+  isLoading,
+  error,
+  name,
+  onSelectCountry,
+}) => {
   return (
     <>
       <small className='mb-tn'>Neighbours ({neighbours.length})</small>
@@ -14,7 +20,7 @@ const Neighbors = ({ neighbours, isLoading, error, name, onSelectCountry }) => {
       )}
       <div className='neighbours'>
         {neighbours.map(neighbour => (
-          <NeighborItem
+          <NeighbourItem
             key={neighbour.cca3}
             neighbour={neighbour}
             onSelectCountry={onSelectCountry}
@@ -26,4 +32,4 @@ const Neighbors = ({ neighbours, isLoading, error, name, onSelectCountry }) => {
   );
 };
 
-export default Neighbors;
+export default Neighbours;

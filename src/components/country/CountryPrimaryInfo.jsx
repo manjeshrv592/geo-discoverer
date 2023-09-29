@@ -1,5 +1,5 @@
 import React from 'react';
-import Neighbors from '../neighbors/Neighbors';
+import Neighbours from '../neighbours/Neighbours';
 
 const CountryPrimaryInfo = ({
   country,
@@ -45,7 +45,7 @@ const CountryPrimaryInfo = ({
         </div>
         <small>Region</small>
         <h4 className='mb-sm'>{country.region}</h4>
-        <Neighbors
+        <Neighbours
           neighbours={neighbours}
           onSelectCountry={onSelectCountry}
           isLoading={isLoading}
