@@ -5,6 +5,8 @@ import SearchResult from './SearchResult';
 const Search = ({ onSelectCountry }) => {
   const [toggleSearch, setToggleSearch] = useState(false);
   const [countryResults, setCountryResults] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const [query, setQuery] = useState('');
 
   useEffect(
@@ -13,6 +15,8 @@ const Search = ({ onSelectCountry }) => {
 
       async function fetchCountries() {
         if (!query || query.length <= 2) return setCountryResults([]);
+        setError('');
+        setIsLoading(true);
         try {
           const res = await fetch(
             `https://restcountries.com/v3.1/name/${query}`,
@@ -21,12 +25,18 @@ const Search = ({ onSelectCountry }) => {
 
           const data = await res.json();
 
+          if (data.status === 404) throw new Error('Country not found');
+
           setCountryResults(data);
+          console.log(data);
         } catch (err) {
-          // if(err.name !== 'AbortError') {
-          //   setError(er.message)
-          // }
+          console.log(err);
+          console.log(err.message);
+          if (err.name !== 'AbortError') {
+            setError(err.message);
+          }
         } finally {
+          setIsLoading(false);
         }
       }
 
@@ -59,6 +69,8 @@ const Search = ({ onSelectCountry }) => {
             countries={countryResults}
             onSelectCountry={onSelectCountry}
             onCountryResults={setCountryResults}
+            isLoading={isLoading}
+            error={error}
           />
         )}
       </div>
