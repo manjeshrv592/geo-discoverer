@@ -4,13 +4,13 @@ import BookmarksItem from './BookmarksItem';
 const Bookmarks = ({ bookmarks, onSelectCountry }) => {
   const [toggleBookmarkList, setToggleBookmarkList] = useState(false);
 
-  const handleClick = () => {
+  const handleToggleBookmarkList = () => {
     setToggleBookmarkList(toggleBookmarkList => !toggleBookmarkList);
   };
 
   return (
     <div className='bookmarks'>
-      <button className='btn btn-light' onClick={handleClick}>
+      <button className='btn btn-light' onClick={handleToggleBookmarkList}>
         <i className='fa-solid fa-bookmark'></i>
         Bookmarks
         <span className='btn-badge btn-badge-primary'>{bookmarks.length}</span>
@@ -22,6 +22,7 @@ const Bookmarks = ({ bookmarks, onSelectCountry }) => {
             key={country.cca3}
             country={country}
             onSelectCountry={onSelectCountry}
+            onToggleBookmarkList={handleToggleBookmarkList}
           />
         ))}
       </ul>
