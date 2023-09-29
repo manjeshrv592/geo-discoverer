@@ -494,6 +494,8 @@ small {
 .neighbours {
   display: flex;
   gap: 1.2rem;
+  flex-wrap: wrap;
+  max-width: 50rem;
 }
 
 .neighbours span {
