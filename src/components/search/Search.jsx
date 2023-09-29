@@ -1,50 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SearchForm from './SearchForm';
 import SearchResult from './SearchResult';
+import { useFetchCountries } from '../../customHooks/useFetchCountries';
 
 const Search = ({ onSelectCountry }) => {
   const [toggleSearch, setToggleSearch] = useState(false);
-  const [countryResults, setCountryResults] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   const [query, setQuery] = useState('');
-
-  useEffect(
-    function () {
-      const controller = new AbortController();
-
-      async function fetchCountries() {
-        if (!query || query.length <= 2) return setCountryResults([]);
-        setError('');
-        setIsLoading(true);
-        try {
-          const res = await fetch(
-            `https://restcountries.com/v3.1/name/${query}`,
-            { signal: controller.signal }
-          );
-
-          const data = await res.json();
-
-          if (data.status === 404) throw new Error('Country not found');
-
-          setCountryResults(data);
-        } catch (err) {
-          if (err.name !== 'AbortError') {
-            setError(err.message);
-          }
-        } finally {
-          setIsLoading(false);
-        }
-      }
-
-      fetchCountries();
-
-      return function () {
-        controller.abort();
-      };
-    },
-    [query]
-  );
+  const { countryResults, setCountryResults, isLoading, error } =
+    useFetchCountries(query);
 
   return (
     <>
