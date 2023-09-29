@@ -18,47 +18,52 @@ const App = () => {
   // Bookmarks array: We will make use of custom local storage hook to store it's state on page reload
   const [bookmarks, setBookmarks] = useLocalStorageState([], 'countries');
 
+  // Pieces of states required to handle fetch
+  const [neighbours, setNeighbours] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [neighbours, setNeighbours] = useState([]);
+
+  // Function to Remove country from bookmark array
+  const removeBookmark = country =>
+    setBookmarks(bookmarks =>
+      bookmarks.filter(bookmark => bookmark.cca3 !== country.cca3)
+    );
+
+  // Function to Add country to bookmark array
+  const addBookmark = country =>
+    setBookmarks(bookmarks => [...bookmarks, country]);
 
   const handleBookmarks = country => {
     // Check if country already exists in bookmark
-    const existsInBookmark = bookmarks.filter(
-      bookmark => bookmark.cca3 === country.cca3
-    );
-    const isBookmarked = existsInBookmark.length !== 0;
+    const isBookmarked =
+      bookmarks.filter(bookmark => bookmark.cca3 === country.cca3).length !== 0;
 
     // If yes remove from bookmarks
-    if (isBookmarked)
-      return setBookmarks(bookmarks =>
-        bookmarks.filter(bookmark => bookmark.cca3 !== country.cca3)
-      );
+    if (isBookmarked) removeBookmark(country);
 
     // Else add it to bookmark
-    setBookmarks(bookmarks => [...bookmarks, country]);
+    if (!isBookmarked) addBookmark(country);
   };
 
+  // Add new country
   const handleSelectedCountry = country => {
     setSelectedCountry(country);
+
+    // We will set neighbours to empty array when user selects new country in this way we will delete old country neighbours list and new neighbours will be fetched from useEffect(fetchNeighbours)
     setNeighbours([]);
   };
 
-  // Add bookmarks to local storage
+  // Fetch neighbours
   useEffect(
     function () {
-      localStorage.setItem('countries', JSON.stringify(bookmarks));
-    },
-    [bookmarks]
-  );
-
-  // Load neighbours
-  useEffect(
-    function () {
+      // If no country is selected then return
       if (!selectedCountry) return;
+
+      // If country is island then there are no borders, so return
       const { borders } = selectedCountry;
       if (!borders) return setNeighbours([]);
 
+      // Fuction to fetch neighbours
       async function fetchNeighbours() {
         setError('');
         setIsLoading(true);
@@ -87,6 +92,7 @@ const App = () => {
         }
       }
 
+      // fetch neighbours
       fetchNeighbours();
     },
     [selectedCountry]
