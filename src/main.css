@@ -63,7 +63,7 @@
   );
 
   /* Fonts */
-  --body-font: 'Poppins', sans-serif;
+  --body-font: "Poppins", sans-serif;
 }
 
 /**********************************************/
@@ -619,6 +619,10 @@ small {
   color: var(--danger);
 }
 
+.filler-text {
+  padding-top: 10rem;
+}
+
 /**********************************************/
 /* Util classes */
 
@@ -703,6 +707,10 @@ small {
 
 .text-primary-900 {
   color: var(--primary-900);
+}
+
+.text-center {
+  text-align: center;
 }
 
 .mb-tn {

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { useLocalStorageState } from './customHooks/useLocalStorageState';
-import Header from './components/header/Header';
-import BrandName from './components/header/BrandName';
-import Bookmarks from './components/bookmarks/Bookmarks';
-import Search from './components/search/Search';
-import Footer from './components/Footer';
-import Country from './components/country/Country';
-import CountryPrimaryInfo from './components/country/CountryPrimaryInfo';
-import CountrySecondaryInfo from './components/country/CountrySecondaryInfo';
-import { useFetchNeighbours } from './customHooks/useFetchNeighbours';
+import React, { useState } from "react";
+import { useLocalStorageState } from "./customHooks/useLocalStorageState";
+import Header from "./components/header/Header";
+import BrandName from "./components/header/BrandName";
+import Bookmarks from "./components/bookmarks/Bookmarks";
+import Search from "./components/search/Search";
+import Footer from "./components/Footer";
+import Country from "./components/country/Country";
+import CountryPrimaryInfo from "./components/country/CountryPrimaryInfo";
+import CountrySecondaryInfo from "./components/country/CountrySecondaryInfo";
+import { useFetchNeighbours } from "./customHooks/useFetchNeighbours";
+import FillerText from "./components/status/FillerText";
 
 const App = () => {
   // NOTE: RESTCountries api does not provide id on countries data. So we will use cca3 property on countries as ID or KEY
@@ -17,7 +18,7 @@ const App = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
 
   // Bookmarks array: We will make use of custom local storage hook to store it's state on page reload
-  const [bookmarks, setBookmarks] = useLocalStorageState([], 'countries');
+  const [bookmarks, setBookmarks] = useLocalStorageState([], "countries");
 
   // Custom hook to fetch neighbours
   const { neighbours, setNeighbours, isLoading, error } =
@@ -54,7 +55,7 @@ const App = () => {
   };
 
   return (
-    <div className='container'>
+    <div className="container">
       <Header>
         <BrandName />
         <Search onSelectCountry={handleSelectedCountry} />
@@ -64,6 +65,7 @@ const App = () => {
         />
       </Header>
       <Country>
+        {!selectedCountry && <FillerText />}
         {selectedCountry && (
           <CountryPrimaryInfo
             country={selectedCountry}
